@@ -5,7 +5,7 @@ VisualStudioVersion = 17.12.35728.132 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NX-Library-Backend", "NX-Library-Backend\NX-Library-Backend.csproj", "{6D63C322-EE25-4CE1-9064-D0BC5E704DA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NXLibrary.Models", "NXLibrary.Models\NXLibrary.Models.csproj", "{258BD22B-2AB8-45D0-A74D-337A74DDC835}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "NXLibrary.Models\Models.csproj", "{258BD22B-2AB8-45D0-A74D-337A74DDC835}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

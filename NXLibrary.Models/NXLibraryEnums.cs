@@ -1,8 +1,8 @@
-﻿namespace NXLibrary.Models
+﻿namespace Models
 {
     public class NXLibraryEnums
     {
-        public enum Genere 
+        public enum Genere
         {
             Fiction,
             NonFiction,

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using static NXLibrary.Models.NXLibraryEnums;
+using static Models.NXLibraryEnums;
 
-namespace NXCarLot.Models
+namespace Models
 {
     public class Vehicle
     {

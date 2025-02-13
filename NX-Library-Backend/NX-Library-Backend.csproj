@@ -16,9 +16,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="8.0.2" />
   </ItemGroup>
 
+
   <ItemGroup>
-    <Folder Include="Controllers\" />
-	  <ProjectReference Include="..\NXLibrary.Models\NXLibrary.Models.csproj" />"
+    <ProjectReference Include="..\NXLibrary.Models\Models.csproj" />
   </ItemGroup>
 
 </Project>
+ 
