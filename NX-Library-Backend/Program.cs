@@ -35,9 +35,9 @@ builder.Services.AddCors(options =>
         });
 });
 
-builder.Services.AddAuthorization();
-builder.Services.AddIdentityApiEndpoints<ApplicationUser>()
-    .AddEntityFrameworkStores<NXLibDbContext>();
+//builder.Services.AddAuthorization();
+//builder.Services.AddIdentityApiEndpoints<ApplicationUser>()
+//    .AddEntityFrameworkStores<NXLibDbContext>();
 
 builder.Services.AddDbContext<NXLibDbContext>(options =>
   options.UseSqlServer(builder.Configuration.GetConnectionString("NXLibDbContext")));
@@ -53,6 +53,9 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors();
+
+//app.UseAuthetication();
+//app.UseAuthorization
 
 app.MapControllers();
 

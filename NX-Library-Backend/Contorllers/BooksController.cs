@@ -8,7 +8,8 @@ using NXLibraryBackend.Data;
 namespace NXLibraryBackend.BookController
 {
     [ApiController]
-    [Route("[controller]"), Authorize]
+    [Route("[controller]")]
+    //[Authorize]
     public class BookContorller(NXLibDbContext _ctx) : Controller
     {
         [HttpGet("GetBooks")]
