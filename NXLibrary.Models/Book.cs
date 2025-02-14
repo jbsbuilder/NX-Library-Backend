@@ -3,7 +3,7 @@ using static Models.NXLibraryEnums;
 
 namespace Models
 {
-    public class Vehicle
+    public class Book
     {
         [Key]
         public int Id { get; set; }

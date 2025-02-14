@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using NX_Library_Backend.Data;
 using NXLibraryBackend.Data;
 using Swashbuckle.AspNetCore.Filters;
 
@@ -29,15 +30,28 @@ builder.Services.AddCors(options =>
                 .AllowAnyHeader();
         });
 });
-builder.Services.AddDbContext<NXLibraryBackend>(options =>
+
+builder.Services.AddAuthorization();
+builder.Services.AddIdentityApiEndpoints<ApplicationUser>()
+    .AddEntityFrameworkStores <NXLibDbContext>();
+
+
+builder.Services.AddDbContext<NXLibDbContext>(options =>
   options.UseSqlServer(builder.Configuration.GetConnectionString("NXLibDbContext")));
-
-
 
 var app = builder.Build();
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
+app.UseHttpsRedirection();
 
+app.UseCors();
+
+app.MapControllers();
 
 app.Run();
 

@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>NX_Library_Backend</RootNamespace>
+    <UserSecretsId>7cbe4fa6-1bc2-4303-b18f-613eecb63189</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
