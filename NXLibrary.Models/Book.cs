@@ -7,8 +7,8 @@ namespace Models
     {
         [Key]
         public int Id { get; set; }
-        public string? Title { get; set; } = "";
-        public string? Author { get; set; } = "";
+        public string? bookTitle { get; set; } = "";
+        public string? bookAuthor { get; set; } = "";
         public Genere? Genere { get; set; }
         public int Copies { get; set; }
     }
