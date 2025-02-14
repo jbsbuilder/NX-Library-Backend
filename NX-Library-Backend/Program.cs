@@ -18,8 +18,12 @@ builder.Services.AddSwaggerGen(
     options =>
     {
         options.SwaggerDoc("v1", new OpenApiInfo { Title = "NX_Library_Backend", Version = "v1" });
-        options.ExampleFilters();
+        options.ExampleFilters(); // Register the example filters
     });
+
+// Register the necessary services for Swashbuckle.AspNetCore.Filters
+builder.Services.AddSwaggerExamplesFromAssemblyOf<Program>();
+
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(
@@ -33,8 +37,7 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddAuthorization();
 builder.Services.AddIdentityApiEndpoints<ApplicationUser>()
-    .AddEntityFrameworkStores <NXLibDbContext>();
-
+    .AddEntityFrameworkStores<NXLibDbContext>();
 
 builder.Services.AddDbContext<NXLibDbContext>(options =>
   options.UseSqlServer(builder.Configuration.GetConnectionString("NXLibDbContext")));
@@ -54,6 +57,3 @@ app.UseCors();
 app.MapControllers();
 
 app.Run();
-
-
-//false;false;
