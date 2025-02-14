@@ -10,5 +10,6 @@ namespace Models
         public string? Title { get; set; } = "";
         public string? Author { get; set; } = "";
         public Genere? Genere { get; set; }
+        public int Copies { get; set; }
     }
 }
