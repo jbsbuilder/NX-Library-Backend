@@ -10,6 +10,16 @@ namespace NXLibraryBackend.Data
         public NXLibDbContext(DbContextOptions dbContextOptions)
             : base(dbContextOptions) { }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<BookAuthor>()
+                .HasMany(e => e.Book)
+                .WithOne(e => e.BookAuthor)
+                .HasForeignKey(e => e.AuthorId)
+                .IsRequired(false);
+        }
         public DbSet<Book> Books { get; set; }
     }
 }

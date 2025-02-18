@@ -16,9 +16,11 @@ namespace NXLibraryBackend.BookController
         public async Task<List<Book>> GetBooks()
         {
 
-            var rslt = from c in _ctx.Books
-                       select c;
-            return await rslt.ToListAsync();
+            var books = await _ctx.Books
+                .Include(author => author.BookAuthor)
+                .ToListAsync();
+
+            return books;
 
         }
 
