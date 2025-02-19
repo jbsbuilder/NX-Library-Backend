@@ -21,5 +21,7 @@ namespace NXLibraryBackend.Data
                 .IsRequired(false);
         }
         public DbSet<Book> Books { get; set; }
+        //public DbSet<BookAuthor> BookAuthor { get; set; }
+        public DbSet<Models.BookAuthor> BookAuthor { get; set; } = default!;
     }
 }
