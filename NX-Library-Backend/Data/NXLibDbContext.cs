@@ -21,18 +21,7 @@ namespace NXLibraryBackend.Data
                 .IsRequired(false);
         }
 
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-
-            builder.Entity<BookAuthor>()
-                .HasMany(e => e.Book)
-                .WithOne(e => e.BookAuthor)
-                .HasForeignKey(e => e.AuthorId)
-                .IsRequired(false);
-        }
         public DbSet<Book> Books { get; set; }
-        //public DbSet<BookAuthor> BookAuthor { get; set; }
         public DbSet<Models.BookAuthor> BookAuthor { get; set; } = default!;
     }
 }
