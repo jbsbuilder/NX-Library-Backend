@@ -24,4 +24,4 @@ namespace NXLibraryBackend.Data
         public DbSet<Book> Books { get; set; }
         public DbSet<Models.BookAuthor> BookAuthor { get; set; } = default!;
     }
-}
+} 
