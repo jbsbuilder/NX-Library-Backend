@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using NX_Library_Backend.Data;
 using Models;
 using NXLibraryBackend.Data;
+using DTOs;
 
 namespace NXLibraryBackend.BookController
 {
@@ -34,9 +35,16 @@ namespace NXLibraryBackend.BookController
         }
 
         [HttpPost("AddBook")]
-        public async Task<ActionResult> AddBook(Book book)
+        public async Task<ActionResult> AddBook(AddBookDTO book)
         {
-            _ctx.Books.Add(book);
+            _ctx.Books.Add(new Book
+            {
+                BookTitle = book.BookTitle,
+                AuthorId = book.AuthorId,
+                Genere = book.Genere,
+                Copies = book.Copies
+
+            });
             await _ctx.SaveChangesAsync();
             return Ok();
         }
