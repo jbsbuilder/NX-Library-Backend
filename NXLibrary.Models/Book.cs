@@ -12,6 +12,6 @@ namespace Models
         public Genere? Genere { get; set; }
         public int Copies { get; set; }
 
-        public BookAuthor? BookAuthor { get; set; }
+        public BookAuthor BookAuthor { get; set; } = default!;
     }
 }

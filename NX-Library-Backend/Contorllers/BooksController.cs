@@ -37,14 +37,16 @@ namespace NXLibraryBackend.BookController
         [HttpPost("AddBook")]
         public async Task<ActionResult> AddBook(AddBookDTO book)
         {
-            _ctx.Books.Add(new Book
-            {
-                BookTitle = book.BookTitle,
-                AuthorId = book.AuthorId,
-                Genere = book.Genere,
-                Copies = book.Copies
-
-            });
+     
+            _ctx.Books.Add(
+                new Book
+                {
+                    BookTitle = book.BookTitle,
+                    AuthorId = book.AuthorId,
+                    Genere = book.Genere,
+                    Copies = book.Copies
+                }
+                );
             await _ctx.SaveChangesAsync();
             return Ok();
         }
