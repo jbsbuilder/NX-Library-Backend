@@ -52,8 +52,19 @@ namespace NXLibraryBackend.BookController
         }
 
         [HttpPut("/UpdateBook")]
-        public async Task<ActionResult> UpdateBook(Book book)
+        public async Task<ActionResult> UpdateBook(UpdateBookDTO bookDto)
         {
+            var book = await _ctx.Books.FindAsync(bookDto.Id);
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            book.BookTitle = bookDto.BookTitle;
+            book.AuthorId = bookDto.AuthorId;
+            book.Genere = bookDto.Genere;
+            book.Copies = bookDto.Copies;
+
             _ctx.Books.Update(book);
             await _ctx.SaveChangesAsync();
             return Ok();
