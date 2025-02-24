@@ -51,10 +51,10 @@ namespace NXLibraryBackend.BookController
             return Ok();
         }
 
-        [HttpPut("/UpdateBook")]
-        public async Task<ActionResult> UpdateBook(UpdateBookDTO bookDto)
+        [HttpPut("/UpdateBook/{bookId}")]
+        public async Task<ActionResult> UpdateBook(int bookId, [FromBody] UpdateBookDTO bookDto)
         {
-            var book = await _ctx.Books.FindAsync(bookDto.Id);
+            var book = await _ctx.Books.FindAsync(bookId);
             if (book == null)
             {
                 return NotFound();
