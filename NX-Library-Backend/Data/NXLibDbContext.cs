@@ -9,6 +9,7 @@ namespace NXLibraryBackend.Data
     {
         public NXLibDbContext(DbContextOptions dbContextOptions)
             : base(dbContextOptions) { }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -19,8 +20,9 @@ namespace NXLibraryBackend.Data
                 .WithOne(b => b.BookAuthor)
                 .HasForeignKey(b => b.AuthorId)
                 .IsRequired(false);
-        }
 
+        }
+        public DbSet<PODetail> PODetail { get; set; } = default!;
         public DbSet<Book> Books { get; set; } = default!;
         public DbSet<BookAuthor> BookAuthor { get; set; } = default!;
     }
