@@ -16,6 +16,10 @@ namespace NX_Library_Backend.PODetailsContorllers
         public async Task<List<PODetail>> GetPODetails()
         {
             var poDetails = await _ctx.PODetail
+                .Include(p => p.PONumber!)
+                .ThenInclude(po => po.Vendor!)
+                .Include(p => p.Book!)
+                .ThenInclude(po => po.BookAuthor!) //fix to include the author
                 .ToListAsync();
             return poDetails;
         }
