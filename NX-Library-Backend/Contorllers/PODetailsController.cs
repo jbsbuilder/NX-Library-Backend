@@ -10,7 +10,7 @@ namespace NX_Library_Backend.PODetailsContorllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class PODetails(NXLibDbContext _ctx): ControllerBase
+    public class PODetails(NXLibDbContext _ctx) : ControllerBase
     {
         [HttpGet("/GetPODetails")]
         public async Task<List<PODetail>> GetPODetails()
@@ -34,7 +34,7 @@ namespace NX_Library_Backend.PODetailsContorllers
         }
 
         [HttpPost("/AddPODetail")]
-        public async Task<PODetail> AddPODetail(AddPODTO poDetail)
+        public async Task<ActionResult<PODetail>> AddPODetail(AddPODTO poDetail)
         {
             var maxPONumber = await _ctx.PONumber.MaxAsync(po => po.PONumbers);
             var poNumber = new PONumber
@@ -63,15 +63,40 @@ namespace NX_Library_Backend.PODetailsContorllers
             return newPODetail;
         }
 
-        [HttpPut("/UpdatePODetail")]
+        [HttpPut("/UpdatePODetail/{poDetailId}")]
+        public async Task<ActionResult<PODetail>> UpdatePODetail(int poDetailId, [FromBody] UpdatePODTO poDto)
+        {
+            var poDetail = await _ctx.PODetail
+                .Include(p => p.PONumber)
+                    .ThenInclude(po => po.Vendor!)
+                .Include(p => p.Book)
+                    .ThenInclude(po => po.BookAuthor!)
+                .FirstOrDefaultAsync(p => p.Id == poDetailId);
+            if (poDetail == null)
+            {
+                return NotFound();
+            }
+
+            poDetail.PONumber.VendorId = poDto.VendorId;
+            poDetail.BookId = poDto.BookId;
+            poDetail.Quantity = poDto.Quantity;
+            poDetail.Price = poDto.Price * poDto.Quantity;
+
+
+            _ctx.PODetail.Update(poDetail);
+            await _ctx.SaveChangesAsync();
+            return Ok();
+
+
+        }
 
 
         [HttpDelete("/DeleteBook{PODetailId}")]
         public async Task<ActionResult> DeletePODetail(int PODetailId)
         {
-           var rslt = from c in _ctx.PODetail
-                      where c.Id == PODetailId
-                      select c;
+            var rslt = from c in _ctx.PODetail
+                       where c.Id == PODetailId
+                       select c;
             PODetail? poDetail = await rslt.FirstOrDefaultAsync();
             if (poDetail != null)
             {

@@ -20,9 +20,6 @@ namespace NXLibraryBackend.Data
                 .WithOne(b => b.BookAuthor)
                 .HasForeignKey(b => b.AuthorId)
                 .IsRequired(false);
-            builder.Entity<PONumber>()
-                .Property(p => p.Id)
-                .ValueGeneratedOnAdd();
         }
 
         public DbSet<Vendor> Vendor { get; set; } = default!;

@@ -9,9 +9,10 @@ namespace Models
 {
     public class PONumber
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        [ForeignKey(nameof(VendorId))]
         public Vendor? Vendor { get; set; }
+        public int? VendorId { get; set; }
         public int? PONumbers { get; set; }
     }
 }
