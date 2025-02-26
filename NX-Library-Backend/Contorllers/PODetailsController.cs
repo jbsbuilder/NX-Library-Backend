@@ -34,8 +34,9 @@ namespace NX_Library_Backend.PODetailsContorllers
         }
 
         [HttpPost("/AddPODetail")]
-        public async Task<ActionResult<PODetail>> AddPODetail(AddPODTO poDetail)
+         public async Task<ActionResult<PODetail>> AddPODetail(AddPODTO poDetail)
         {
+
             var maxPONumber = await _ctx.PONumber.MaxAsync(po => po.PONumbers);
             var poNumber = new PONumber
             {
