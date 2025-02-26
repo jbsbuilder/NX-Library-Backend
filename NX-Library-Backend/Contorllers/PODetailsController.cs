@@ -33,6 +33,39 @@ namespace NX_Library_Backend.PODetailsContorllers
             return await rslt.FirstOrDefaultAsync();
         }
 
+        [HttpPost("/AddPODetail")]
+        public async Task<PODetail> AddPODetail(AddPODTO poDetail)
+        {
+            var maxPONumber = await _ctx.PONumber.MaxAsync(po => po.PONumbers);
+            var poNumber = new PONumber
+            {
+                PONumbers = maxPONumber + 1,
+                Vendor = await _ctx.Vendor.FindAsync(poDetail.VendorId)
+            };
+            var book = await _ctx.Books.FindAsync(poDetail.BookId);
+            if (book == null)
+            {
+                throw new Exception("Book not found");
+            }
+            var newPODetail = new PODetail
+            {
+                PONumber = poNumber,
+                Book = book,
+                Quantity = poDetail.Quantity ?? book.Copies,
+                Price = poDetail.Price * poDetail.Quantity
+            };
+
+            _ctx.PODetail.Add(newPODetail);
+
+
+            _ctx.PONumber.Add(poNumber);
+            await _ctx.SaveChangesAsync();
+            return newPODetail;
+        }
+
+        [HttpPut("/UpdatePODetail")]
+
+
         [HttpDelete("/DeleteBook{PODetailId}")]
         public async Task<ActionResult> DeletePODetail(int PODetailId)
         {
