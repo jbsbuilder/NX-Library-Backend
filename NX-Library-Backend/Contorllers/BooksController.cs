@@ -44,7 +44,8 @@ namespace NXLibraryBackend.BookController
                     BookTitle = book.BookTitle,
                     AuthorId = book.AuthorId,
                     Genere = book.Genere,
-                    Copies = book.Copies
+                    Copies = book.Copies,
+                    UnitPrice = book.UnitPrice
                 }
                 );
             await _ctx.SaveChangesAsync();
@@ -64,6 +65,7 @@ namespace NXLibraryBackend.BookController
             book.AuthorId = bookDto.AuthorId;
             book.Genere = bookDto.Genere;
             book.Copies = bookDto.Copies;
+            book.UnitPrice = bookDto.UnitPrice;
 
             _ctx.Books.Update(book);
             await _ctx.SaveChangesAsync();

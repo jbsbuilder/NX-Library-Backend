@@ -9,5 +9,6 @@ namespace DTOs
         public int AuthorId { get; set; }
         public Genere? Genere { get; set; }
         public int Copies { get; set; }
+        public Double UnitPrice { get; set; }
     }
 }
