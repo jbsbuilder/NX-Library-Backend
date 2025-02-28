@@ -92,7 +92,7 @@ namespace NX_Library_Backend.PODetailsContorllers
         }
 
 
-        [HttpDelete("/DeleteBook{PODetailId}")]
+        [HttpDelete("/DeletePODetail/{PODetailId}")]
         public async Task<ActionResult> DeletePODetail(int PODetailId)
         {
             var rslt = from c in _ctx.PODetail
