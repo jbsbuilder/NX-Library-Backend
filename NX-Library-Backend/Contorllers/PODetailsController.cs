@@ -34,7 +34,7 @@ namespace NX_Library_Backend.PODetailsContorllers
         }
 
         [HttpPost("/AddPODetail")]
-         public async Task<ActionResult<PurchaseOrderDetail>> AddPODetail(AddPurchaseOrder poDetail)
+         public async Task<ActionResult<PurchaseOrderDetail>> AddPODetail(AddPurchaseOrderDetailDTO poDetail)
         {
 
             var maxPONumber = await _ctx.PONumber.MaxAsync(po => po.PONumbers);
@@ -65,7 +65,7 @@ namespace NX_Library_Backend.PODetailsContorllers
         }
 
         [HttpPut("/UpdatePODetail/{poDetailId}")]
-        public async Task<ActionResult<PurchaseOrderDetail>> UpdatePODetail(int poDetailId, [FromBody] UpdatePurchaseOrderDTO poDto)
+        public async Task<ActionResult<PurchaseOrderDetail>> UpdatePODetail(int poDetailId, [FromBody] UpdatePurchaseOrderDetailDTO poDto)
         {
             var poDetail = await _ctx.PODetail
                 .Include(p => p.PONumber)

@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Models;
 
 namespace DTOs
 {
-    public class AddPurchaseOrder
+    public class UpdatePurchaseOrderDetailDTO
     {
-        public int? VendorId { get; set; }
-        public int? BookId { get; set; }
+        public int? Id { get; set; }
+        public int? PurchaseOrderId { get; set; }
         public int? QTY { get; set; }
-        public double? Price { get; set; }
 
     }
 }
