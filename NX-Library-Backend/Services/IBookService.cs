@@ -9,11 +9,11 @@ using NXLibraryBackend.Data;
 
 namespace NX_Library_Backend.Services
 {
-    public class BookService : IBooksController
+    public class BookServices : IBookController
     {
         private readonly NXLibDbContext _context;
 
-        public BookService(NXLibDbContext context)
+        public BookServices(NXLibDbContext context)
         {
             _context = context;
         }

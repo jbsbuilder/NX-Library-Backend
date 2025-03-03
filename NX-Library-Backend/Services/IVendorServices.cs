@@ -9,10 +9,10 @@ using DTOs;
 
 namespace NX_Library_Backend.Services
 {
-    public class VendorService : IVendorsController
+    public class VendorServices : IVendorController
     {
         private readonly NXLibDbContext _context;
-        public VendorService(NXLibDbContext context)
+        public VendorServices(NXLibDbContext context)
         {
             _context = context;
         }

@@ -9,11 +9,11 @@ using NXLibraryBackend.Data;
 
 namespace NX_Library_Backend.Services
 {
-    public class PurchaseOrdersDetailService : IPurchaseOrdersDetailsController
+    public class PurchaseOrdersDetailServices : IPurchaseOrderDetailController
     {
         private readonly NXLibDbContext _context;
 
-        public PurchaseOrdersDetailService(NXLibDbContext context)
+        public PurchaseOrdersDetailServices(NXLibDbContext context)
         {
             _context = context;
         }

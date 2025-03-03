@@ -5,7 +5,7 @@ using DTOs;
 namespace NX_Library_Backend.Interfaces
 
 {
-    public interface IAuthorsController
+    public interface IAuthorController
     {
         Task<List<Author>> GetAuthors();
         Task<ActionResult> GetAuthor(int authorId);

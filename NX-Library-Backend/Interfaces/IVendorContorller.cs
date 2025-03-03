@@ -4,7 +4,7 @@ using DTOs;
 
 namespace NX_Library_Backend.Interfaces
 {
-    public interface IVendorsController
+    public interface IVendorController
     {
         Task<List<Vendor>> GetVendors();
         Task<Vendor?> GetVendor(int vendorId);

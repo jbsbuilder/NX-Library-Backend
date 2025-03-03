@@ -9,10 +9,10 @@ using NXLibraryBackend.Data;
 
 namespace NX_Library_Backend.Services
 {
-    public class AuthorService : IAuthorsController
+    public class AuthorServices : IAuthorController
     {
         private readonly NXLibDbContext _context;
-        public AuthorService(NXLibDbContext context)
+        public AuthorServices(NXLibDbContext context)
         {
             _context = context;
         }

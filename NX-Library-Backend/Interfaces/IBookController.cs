@@ -4,7 +4,7 @@ using DTOs;
 
 namespace NX_Library_Backend.Interfaces
 {
-    public interface IBooksController
+    public interface IBookController
     {
         Task<List<Book>> GetBooks();
         Task<Book?> GetBook(int bookId);

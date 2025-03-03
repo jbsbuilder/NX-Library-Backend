@@ -4,7 +4,7 @@ using DTOs;
 
 namespace NX_Library_Backend.Interfaces
 {
-    public interface IPurchaseOrdersDetailsController
+    public interface IPurchaseOrderDetailController
     {
         Task<List<PurchaseOrderDetail>> GetPurchaseOrderDetails();
         Task<PurchaseOrderDetail?> GetPurchaseOrderDetail(int purchaseOrderDetailId);
