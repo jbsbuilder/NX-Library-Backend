@@ -5,10 +5,9 @@ namespace DTOs
     public class UpdateBookDTO
     {
         public int Id { get; set; }
-        public string? BookTitle { get; set; } = "";
+        public string? Title { get; set; } = "";
         public int AuthorId { get; set; }
-        public Genere? Genere { get; set; }
-        public int Copies { get; set; }
-        public Double UnitPrice { get; set; }
+        public Genre? Genre { get; set; }
+        public Double DefaultPrice { get; set; }
     }
 }

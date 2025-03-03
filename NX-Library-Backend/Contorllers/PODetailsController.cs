@@ -13,7 +13,7 @@ namespace NX_Library_Backend.PODetailsContorllers
     public class PODetails(NXLibDbContext _ctx) : ControllerBase
     {
         [HttpGet("/GetPODetails")]
-        public async Task<List<PODetail>> GetPODetails()
+        public async Task<List<PurchaseOrderDetail>> GetPODetails()
         {
             var poDetails = await _ctx.PODetail
                 .Include(p => p.PONumber!)
@@ -25,7 +25,7 @@ namespace NX_Library_Backend.PODetailsContorllers
         }
 
         [HttpGet("/GetPODetail/{PODetailId}")]
-        public async Task<PODetail?> GetPODetail(int PODetailId)
+        public async Task<PurchaseOrderDetail?> GetPODetail(int PODetailId)
         {
             var rslt = from c in _ctx.PODetail
                        where c.Id == PODetailId
@@ -34,11 +34,11 @@ namespace NX_Library_Backend.PODetailsContorllers
         }
 
         [HttpPost("/AddPODetail")]
-         public async Task<ActionResult<PODetail>> AddPODetail(AddPODTO poDetail)
+         public async Task<ActionResult<PurchaseOrderDetail>> AddPODetail(AddPurchaseOrder poDetail)
         {
 
             var maxPONumber = await _ctx.PONumber.MaxAsync(po => po.PONumbers);
-            var poNumber = new PONumber
+            var poNumber = new PurchaseOrder
             {
                 PONumbers = maxPONumber + 1,
                 Vendor = await _ctx.Vendor.FindAsync(poDetail.VendorId)
@@ -48,7 +48,7 @@ namespace NX_Library_Backend.PODetailsContorllers
             {
                 throw new Exception("Book not found");
             }
-            var newPODetail = new PODetail
+            var newPODetail = new PurchaseOrderDetail
             {
                 PONumber = poNumber,
                 Book = book,
@@ -65,7 +65,7 @@ namespace NX_Library_Backend.PODetailsContorllers
         }
 
         [HttpPut("/UpdatePODetail/{poDetailId}")]
-        public async Task<ActionResult<PODetail>> UpdatePODetail(int poDetailId, [FromBody] UpdatePODTO poDto)
+        public async Task<ActionResult<PurchaseOrderDetail>> UpdatePODetail(int poDetailId, [FromBody] UpdatePurchaseOrderDTO poDto)
         {
             var poDetail = await _ctx.PODetail
                 .Include(p => p.PONumber)
@@ -79,9 +79,6 @@ namespace NX_Library_Backend.PODetailsContorllers
             }
 
             poDetail.PONumber.VendorId = poDto.VendorId;
-            poDetail.BookId = poDto.BookId;
-            poDetail.Quantity = poDto.Quantity;
-            poDetail.Price = poDto.Price * poDto.Quantity;
 
 
             _ctx.PODetail.Update(poDetail);
@@ -98,7 +95,7 @@ namespace NX_Library_Backend.PODetailsContorllers
             var rslt = from c in _ctx.PODetail
                        where c.Id == PODetailId
                        select c;
-            PODetail? poDetail = await rslt.FirstOrDefaultAsync();
+            PurchaseOrderDetail? poDetail = await rslt.FirstOrDefaultAsync();
             if (poDetail != null)
             {
                 _ctx.PODetail.Remove(poDetail);

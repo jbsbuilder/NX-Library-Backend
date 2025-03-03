@@ -2,7 +2,7 @@
 {
     public class NXLibraryEnums
     {
-        public enum Genere
+        public enum Genre
         {
             Fiction,
             NonFiction,

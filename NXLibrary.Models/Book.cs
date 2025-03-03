@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using static Models.NXLibraryEnums;
 
 namespace Models
@@ -7,11 +8,11 @@ namespace Models
     {
         [Key]
         public int Id { get; set; }
-        public string? BookTitle { get; set; } = "";
-        public int AuthorId { get; set; }
-        public Genere? Genere { get; set; }
-        public int Copies { get; set; }
-        public Double UnitPrice { get; set; }
-        public BookAuthor BookAuthor { get; set; } = default!;
+        public string? Title { get; set; } = "";
+        [ForeignKey(nameof(AuthorId))]
+        public int? AuthorId { get; set; }
+        public Author? Author { get; set; }
+        public Genre? Genre { get; set; }
+        public Double DeafaultPrice { get; set; }
     }
 }

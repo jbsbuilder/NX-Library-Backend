@@ -12,7 +12,7 @@ namespace NX_Library_Backend.AuthorsController
     {
         [HttpGet("GetAuthors")]
 
-        public async Task<List<BookAuthor>> GetAuthors()
+        public async Task<List<Author>> GetAuthors()
         {
             var rslt = from a in _ctx.BookAuthor
                        select a;
@@ -20,7 +20,7 @@ namespace NX_Library_Backend.AuthorsController
         }
 
         [HttpPost("AddAuthor")]
-        public async Task<ActionResult> AddAuthor(BookAuthor author)
+        public async Task<ActionResult> AddAuthor(Author author)
         {
             _ctx.BookAuthor.Add(author);
             await _ctx.SaveChangesAsync();
