@@ -9,44 +9,49 @@ using NXLibraryBackend.Data;
 
 namespace NX_Library_Backend.Services
 {
-    public class AuthorServices : IAuthorController
+    public class IAuthorServices : IAuthorController
     {
         private readonly NXLibDbContext _context;
-        public AuthorServices(NXLibDbContext context)
+
+        public IAuthorServices(NXLibDbContext context)
         {
             _context = context;
         }
+
         public async Task<List<Author>> GetAuthors()
         {
             return await _context.Authors.ToListAsync();
         }
-        public async Task<ActionResult> GetAuthor(int authorId)
+
+        public async Task<Author?> GetAuthor(int authorId)
         {
-            var author = await _context.Authors.FindAsync(authorId);
-            if (author != null)
-            {
-                return new OkObjectResult(author);
-            }
-            return new NotFoundResult();
+            return await _context.Authors.FindAsync(authorId);
         }
-        public async Task<ActionResult> AddAuthor(Author author)
+
+        public async Task<ActionResult> AddAuthor(AddAuthorDTO addAuthorDto)
         {
+            var author = new Author
+            {
+                Name = addAuthorDto.Name
+            };
             _context.Authors.Add(author);
             await _context.SaveChangesAsync();
             return new OkResult();
         }
-        public async Task<ActionResult> UpdateAuthor(int authorId, UpdateAuthorDTO authorDto)
+
+        public async Task<ActionResult> UpdateAuthor(int authorId, UpdateAuthorDTO updateAuthorDto)
         {
             var author = await _context.Authors.FindAsync(authorId);
             if (author != null)
             {
-                author.Name = authorDto.Name;
+                author.Name = updateAuthorDto.Name;
                 _context.Authors.Update(author);
                 await _context.SaveChangesAsync();
                 return new OkResult();
             }
             return new NotFoundResult();
         }
+
         public async Task<ActionResult> DeleteAuthor(int authorId)
         {
             var author = await _context.Authors.FindAsync(authorId);

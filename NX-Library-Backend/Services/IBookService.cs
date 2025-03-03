@@ -28,14 +28,14 @@ namespace NX_Library_Backend.Services
             return await _context.Books.FindAsync(bookId);
         }
 
-        public async Task<ActionResult> AddBook(AddBookDTO bookDto)
+        public async Task<ActionResult> AddBook(AddBookDTO addBookDto)
         {
             var book = new Book
             {
                 Title = bookDto.Title,
                 AuthorId = bookDto.AuthorId,
                 Genre = bookDto.Genre,
-                DefaultPrice = bookDto.DefaultPrice
+                DefaultPrice = bookDto.DefaultPrice != 0 ? bookDto.DefaultPrice : 15.00
             };
 
             _context.Books.Add(book);

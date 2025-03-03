@@ -37,6 +37,7 @@ namespace NX_Library_Backend.Services
                 QTY = purchaseOrderDetail.QTY,
                 Price = purchaseOrderDetail.Price
             };
+            if(purchaseOrder !=)
             _context.PurchaseOrderDetails.Add(purchaseOrder);
             await _context.SaveChangesAsync();
             return new OkResult();
@@ -45,17 +46,16 @@ namespace NX_Library_Backend.Services
         public async Task<ActionResult> UpdatePurchaseOrderDetail(int purchaseOrderDetailId, UpdatePurchaseOrderDetailDTO updatePurchaseOrderDetailDTO)
         {
             var purchaseOrder = await _context.PurchaseOrderDetails.FindAsync(purchaseOrderDetailId);
-            if (purchaseOrder == null)
+            if (purchaseOrder != null)
             {
-                return new NotFoundResult();
+                purchaseOrder.PurchaseOrderId = updatePurchaseOrderDetailDTO.PurchaseOrderId;
+                purchaseOrder.QTY = updatePurchaseOrderDetailDTO.QTY;
+
+                _context.PurchaseOrderDetails.Update(purchaseOrder);
+                await _context.SaveChangesAsync();
+                return new OkResult();
             }
-
-            purchaseOrder.PurchaseOrderId = updatePurchaseOrderDetailDTO.PurchaseOrderId;
-            purchaseOrder.QTY = updatePurchaseOrderDetailDTO.QTY;
-
-            _context.PurchaseOrderDetails.Update(purchaseOrder);
-            await _context.SaveChangesAsync();
-            return new OkResult();
+            return new NotFoundResult();
         }
 
         public async Task<ActionResult> DeletePurchaseOrderDetail(int purchaseOrderDetailId)
