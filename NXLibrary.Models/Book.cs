@@ -13,6 +13,6 @@ namespace Models
         public int? AuthorId { get; set; }
         public Author? Author { get; set; }
         public Genre? Genre { get; set; }
-        public Double DeafaultPrice { get; set; }
+        public Double DefaultPrice { get; set; }
     }
 }

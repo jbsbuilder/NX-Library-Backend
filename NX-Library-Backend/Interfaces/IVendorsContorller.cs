@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Models;
 using DTOs;
+
 namespace NX_Library_Backend.Interfaces
 {
-    public interface IVendorsContorller
+    public interface IVendorsController
     {
         Task<List<Vendor>> GetVendors();
         Task<Vendor?> GetVendor(int vendorId);
