@@ -11,6 +11,6 @@ namespace Models
     {
         [Key]
         public int Id { get; set; }
-        public string? VendorName { get; set; }
+        public string? Name { get; set; }
     }
 }
