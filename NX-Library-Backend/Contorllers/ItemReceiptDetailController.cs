@@ -20,7 +20,7 @@ namespace NXLibraryBackend.ItemReceiptDetailContorller
         public async Task<List<ItemReceiptDetail>> GetItemReceiptDetails()
         {
             var receiptDetails = await _ctx.ItemReceiptDetail
-                .Include(vendor => vendor.Vendor)
+                .Include(itemReceipt => itemReceipt.ItemReceipt)
                 .Include(book => book.Book)
                 .ToListAsync();
 

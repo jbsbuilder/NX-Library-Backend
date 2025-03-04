@@ -13,7 +13,7 @@ namespace Models
         public int BookId { get; set; }
         public int QTY { get; set; }
         public double Price { get; set; }
-        public Vendor Vendor { get; set; } = default!;
+        public ItemReceipt ItemReceipt { get; set; } = default!;
         public Book Book { get; set; } = default!;
     }
 }
