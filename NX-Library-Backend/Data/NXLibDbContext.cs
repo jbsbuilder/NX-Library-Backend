@@ -28,5 +28,6 @@ namespace NXLibraryBackend.Data
         public DbSet<Book> Books { get; set; } = default!;
         public DbSet<BookAuthor> BookAuthor { get; set; } = default!;
         public DbSet<ItemReceipt> ItemReceipt { get; set; } = default!;
+        public DbSet<ItemReceiptDetail> ItemReceiptDetail { get; set; } = default!;
     }
 }
