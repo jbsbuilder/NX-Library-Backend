@@ -27,20 +27,23 @@ namespace NX_Library_Backend.Services
         {
             return await _context.PurchaseOrderDetails.FindAsync(purchaseOrderDetailId);
         }
-
+        //Needs a builder method that is why only 1 ref<--------------------------------
         public async Task<ActionResult> AddPurchaseOrderDetail(AddPurchaseOrderDetailDTO purchaseOrderDetail)
         {
             var purchaseOrder = new PurchaseOrderDetail
             {
-                PurchaseOrderId = purchaseOrderDetail.VendorId,
+                //PurchaseOrderId = purchaseOrderDetail.VendorId, needs a builder method
                 BookId = purchaseOrderDetail.BookId,
                 QTY = purchaseOrderDetail.QTY,
                 Price = purchaseOrderDetail.Price
             };
-            if(purchaseOrder !=)
+            if (purchaseOrder != null)
+            { 
             _context.PurchaseOrderDetails.Add(purchaseOrder);
             await _context.SaveChangesAsync();
             return new OkResult();
+            }
+            return new NotFoundResult();
         }
 
         public async Task<ActionResult> UpdatePurchaseOrderDetail(int purchaseOrderDetailId, UpdatePurchaseOrderDetailDTO updatePurchaseOrderDetailDTO)

@@ -32,10 +32,10 @@ namespace NX_Library_Backend.Services
         {
             var book = new Book
             {
-                Title = bookDto.Title,
-                AuthorId = bookDto.AuthorId,
-                Genre = bookDto.Genre,
-                DefaultPrice = bookDto.DefaultPrice != 0 ? bookDto.DefaultPrice : 15.00
+                Title = addBookDto.Title,
+                AuthorId = addBookDto.AuthorId,
+                Genre = addBookDto.Genre,
+                DefaultPrice = addBookDto.DefaultPrice != 0 ? addBookDto.DefaultPrice : 15.00
             };
 
             _context.Books.Add(book);

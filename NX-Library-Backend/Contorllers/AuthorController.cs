@@ -38,10 +38,6 @@ namespace MyApp.Controllers
             try
             {
                 var author = await _authorService.GetAuthor(authorId);
-                if (author == null)
-                {
-                    return NotFound();
-                }
                 return Ok(author);
             }
             catch (Exception e)
@@ -56,12 +52,8 @@ namespace MyApp.Controllers
             try
             {
                 var author = new Author { Name = addAuthorDTO.Name };
-                if (author.Name != null)
-                {
                     await _authorService.AddAuthor(addAuthorDTO);
                     return Ok();
-                }
-                return BadRequest("Author name is required.");
             }
             catch (Exception e)
             {
@@ -75,10 +67,6 @@ namespace MyApp.Controllers
             try
             {
                 var rslt = await _authorService.UpdateAuthor(authorId, updateAuthorDTO);
-                if (rslt is NotFoundResult)
-                {
-                    return NotFound();
-                }
                 return Ok(rslt);
             }
             catch (Exception e)
@@ -93,10 +81,6 @@ namespace MyApp.Controllers
             try
             {
                 var result = await _authorService.DeleteAuthor(authorId);
-                if (result is NotFoundResult)
-                {
-                    return NotFound();
-                }
                 return Ok(result);
             }
             catch (Exception e)

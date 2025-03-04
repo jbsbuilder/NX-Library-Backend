@@ -38,7 +38,11 @@ namespace NXLibraryBackend.BookController
             try
             {
                 var book = await _bookService.GetBook(bookId);
-                return Ok(book);
+                if (book != null)
+                {
+                    return Ok(book);
+                }
+                return NotFound();
             }
             catch (Exception e)
             {
@@ -72,7 +76,7 @@ namespace NXLibraryBackend.BookController
         }
 
         [HttpPut("UpdateBook/{bookId}")]
-        public async Task<ActionResult> UpdateBook(int bookId, UpdateBookDTO updatebookDto)
+        public async Task<IActionResult> UpdateBook(int bookId, UpdateBookDTO updatebookDto)
         {
             try 
             {
@@ -90,12 +94,12 @@ namespace NXLibraryBackend.BookController
         }
 
         [HttpDelete("DeleteBook/{bookId}")]
-        public async Task<ActionResult> DeleteBook(int bookId)
+        public async Task<IActionResult> DeleteBook(int bookId)
         {
             try
             {
                 var rslt = await _bookService.DeleteBook(bookId);
-                return Ok(rslt);
+                    return Ok(rslt);
             }
             catch (Exception e)
             {

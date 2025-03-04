@@ -17,14 +17,34 @@ namespace NXLibraryBackend.PurchaseOrderDetailController
             _purchaseOrderDetailService = purchaseOrderDetailService;
         }
         [HttpGet("GetPurchaseOrderDetails")]
-        public async Task<List<PurchaseOrderDetail>> GetPurchaseOrderDetails()
+        public async Task<IActionResult> GetPurchaseOrderDetails()
         {
-            return await _purchaseOrderDetailService.GetPurchaseOrderDetails();
+            try
+            {
+                var purchaseOrderDetails = await _purchaseOrderDetailService.GetPurchaseOrderDetails();
+                return Ok(purchaseOrderDetails);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
         [HttpGet("GetPurchaseOrderDetail/{purchaseOrderDetailId}")]
-        public async Task<PurchaseOrderDetail?> GetPurchaseOrderDetail(int purchaseOrderDetailId)
-        { 
-            return await _purchaseOrderDetailService.GetPurchaseOrderDetail(purchaseOrderDetailId);
+        public async Task<IActionResult> GetPurchaseOrderDetail(int purchaseOrderDetailId)
+        {
+            try
+            {
+                var purchaseOrderDetail = await _purchaseOrderDetailService.GetPurchaseOrderDetail(purchaseOrderDetailId);
+                if (purchaseOrderDetail != null)
+                {
+                    return Ok(purchaseOrderDetail);
+                }
+                return NotFound();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
         //Needs a builder method <--------------------------------
         //[HttpPost("AddPurchaseOrderDetail")]
@@ -44,23 +64,39 @@ namespace NXLibraryBackend.PurchaseOrderDetailController
         //    return new BadRequestResult();
         //}
         [HttpPut("UpdatePurchaseOrderDetail/{purchaseOrderDetailId}")]
-        public async Task<ActionResult> UpdatePurchaseOrderDetail(int purchaseOrderDetailId, UpdatePurchaseOrderDetailDTO updatePurchaseOrderDetailDTO)
+        public async Task<IActionResult> UpdatePurchaseOrderDetail(int purchaseOrderDetailId, UpdatePurchaseOrderDetailDTO updatePurchaseOrderDetailDTO)
         {
-            var purchaseOrderDetail = new PurchaseOrderDetail
+            try 
             {
-                PurchaseOrderId = updatePurchaseOrderDetailDTO.PurchaseOrderId,
-                QTY = updatePurchaseOrderDetailDTO.QTY,
-            };
-            if (purchaseOrderDetail != null)
-            {
-                return await _purchaseOrderDetailService.UpdatePurchaseOrderDetail(purchaseOrderDetailId, updatePurchaseOrderDetailDTO);
+                var purchaseOrderDetail = new PurchaseOrderDetail
+                {
+                    PurchaseOrderId = updatePurchaseOrderDetailDTO.PurchaseOrderId,
+                    QTY = updatePurchaseOrderDetailDTO.QTY,
+                };
+                if (purchaseOrderDetail != null)
+                {
+                    return await _purchaseOrderDetailService.UpdatePurchaseOrderDetail(purchaseOrderDetailId, updatePurchaseOrderDetailDTO);
+                }
+                return new BadRequestResult();
             }
-            return new BadRequestResult();
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
         }
         [HttpDelete("DeletePurchaseOrderDetail/{purchaseOrderDetailId}")]
-        public async Task<ActionResult> DeletePurchaseOrderDetail(int purchaseOrderDetailId)
+        public async Task<IActionResult> DeletePurchaseOrderDetail(int purchaseOrderDetailId)
         {
-            return await _purchaseOrderDetailService.DeletePurchaseOrderDetail(purchaseOrderDetailId);
+            try
+            {
+                var rslt = await _purchaseOrderDetailService.DeletePurchaseOrderDetail(purchaseOrderDetailId);
+                    return Ok(rslt);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }
