@@ -22,7 +22,11 @@ namespace NX_Library_Backend.Services
         }
         public async Task<Vendor?> GetVendor(int vendorId)
         {
-            return await _context.Vendors.FindAsync(vendorId);
+            if (vendorId != 0)
+            {
+                return await _context.Vendors.FindAsync(vendorId);
+            }
+            return null;
         }
         public async Task<ActionResult> AddVendor(AddVendorDTO vendorDto)
         {
@@ -30,9 +34,14 @@ namespace NX_Library_Backend.Services
             {
                 Name = vendorDto.Name,
             };
-            _context.Vendors.Add(vendor);
-            await _context.SaveChangesAsync();
-            return new OkResult();
+            if (vendor != null)
+            {
+                _context.Vendors.Add(vendor);
+                await _context.SaveChangesAsync();
+                return new OkResult();
+            }
+            return new NotFoundResult();
+
         }
         public async Task<ActionResult> UpdateVendor(int vendorId, UpdateVendorDTO vendorDTO)
         {
