@@ -9,6 +9,7 @@ namespace NXLibraryBackend.Data
     {
         public NXLibDbContext(DbContextOptions dbContextOptions)
             : base(dbContextOptions) { }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -21,16 +22,12 @@ namespace NXLibraryBackend.Data
                 .IsRequired(false);
         }
 
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-
-            builder.Entity<BookAuthor>()
-                .HasMany(e => e.Book)
-                .WithOne(e => e.BookAuthor)
-                .HasForeignKey(e => e.AuthorId)
-                .IsRequired(false);
-        }
-        public DbSet<Book> Books { get; set; }
+        public DbSet<Vendor> Vendor { get; set; } = default!;
+        public DbSet<PONumber> PONumber { get; set; } = default!;
+        public DbSet<PODetail> PODetail { get; set; } = default!;
+        public DbSet<Book> Books { get; set; } = default!;
+        public DbSet<BookAuthor> BookAuthor { get; set; } = default!;
+        public DbSet<ItemReceipt> ItemReceipt { get; set; } = default!;
+        public DbSet<ItemReceiptDetail> ItemReceiptDetail { get; set; } = default!;
     }
 }

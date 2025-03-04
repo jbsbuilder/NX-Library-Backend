@@ -1,17 +1,13 @@
-using System.ComponentModel.DataAnnotations;
-using static Models.NXLibraryEnums;
+﻿using static Models.NXLibraryEnums;
 
-namespace Models
+namespace DTOs
 {
-    public class Book
+    public class AddBookDTO
     {
-        [Key]
-        public int Id { get; set; }
         public string? BookTitle { get; set; } = "";
         public int AuthorId { get; set; }
         public Genere? Genere { get; set; }
         public int Copies { get; set; }
         public Double UnitPrice { get; set; }
-        public BookAuthor BookAuthor { get; set; } = default!;
     }
 }

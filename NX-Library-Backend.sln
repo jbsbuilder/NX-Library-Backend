@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35728.132 d17.12
+VisualStudioVersion = 17.12.35728.132
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NX-Library-Backend", "NX-Library-Backend\NX-Library-Backend.csproj", "{6D63C322-EE25-4CE1-9064-D0BC5E704DA8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "NXLibrary.Models\Models.csproj", "{258BD22B-2AB8-45D0-A74D-337A74DDC835}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTOs", "DTOs\DTOs.csproj", "{7A1DA09C-1CAC-4A15-B11D-6D9DB45B43F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +23,15 @@ Global
 		{258BD22B-2AB8-45D0-A74D-337A74DDC835}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{258BD22B-2AB8-45D0-A74D-337A74DDC835}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{258BD22B-2AB8-45D0-A74D-337A74DDC835}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A1DA09C-1CAC-4A15-B11D-6D9DB45B43F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A1DA09C-1CAC-4A15-B11D-6D9DB45B43F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A1DA09C-1CAC-4A15-B11D-6D9DB45B43F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A1DA09C-1CAC-4A15-B11D-6D9DB45B43F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FE38274D-DD9A-4C8C-B266-98130AED842C}
 	EndGlobalSection
 EndGlobal

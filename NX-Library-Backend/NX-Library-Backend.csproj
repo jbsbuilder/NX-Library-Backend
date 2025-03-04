@@ -24,6 +24,7 @@
 
 
   <ItemGroup>
+    <ProjectReference Include="..\DTOs\DTOs.csproj" />
     <ProjectReference Include="..\NXLibrary.Models\Models.csproj" />
   </ItemGroup>
 
