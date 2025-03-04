@@ -23,5 +23,39 @@ namespace NXLibraryBackend.ItemReceiptContorller
 
                 return receipts;
         }
+
+        [HttpGet("GetItemReceipts/{ItemReceiptId}")]
+        public async Task<ItemReceipt?> GetItemReceipt(int ItemReceiptId)
+        {
+            var rslt = from c in _ctx.ItemReceipt
+                       where c.Id == ItemReceiptId
+                       select c;
+            return await rslt.FirstOrDefaultAsync();
+        }
+
+        [HttpPost("AddItemReceipt")]
+
+        public async Task<ActionResult> AddItemReceipt(ItemReceipt itemReceipt)
+        {
+            _ctx.ItemReceipt.Add(itemReceipt);
+            await _ctx.SaveChangesAsync();
+            return Ok();
+        }
+
+        [HttpDelete("/DeleteItemReceipt/{ItemReceiptId}")]
+
+        public async Task<ActionResult> DeleteItemReceipt(int ItemReceiptId)
+        {
+            var rslt = from c in _ctx.ItemReceipt
+                       where c.Id == ItemReceiptId
+                       select c;
+            ItemReceipt? itemReceipt = await rslt.FirstOrDefaultAsync();
+            if(itemReceipt != null)
+            {
+                _ctx.ItemReceipt.Remove(itemReceipt);
+                await _ctx.SaveChangesAsync();
+            }
+            return Ok();
+        }
     }
 }
