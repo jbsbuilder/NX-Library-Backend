@@ -5,6 +5,7 @@ using NX_Library_Backend.Data;
 using Models;
 using NXLibraryBackend.Data;
 using DTOs;
+using Microsoft.Extensions.Localization;
 
 namespace NX_Library_Backend.PurchaseOrderDetailContorllers
 {
@@ -23,5 +24,38 @@ namespace NX_Library_Backend.PurchaseOrderDetailContorllers
             return purchaseDetails;
         }
 
+        [HttpGet("GetPurchaseOrderDetails/{PurchaseOrderDetailId}")]
+
+        public async Task<PurchaseOrderDetail?> GetPurchaseOrderDetail(int PurchaseOrderDetailId)
+        {
+            var rslt = from c in _ctx.PurchaseOrderDetail
+                       where c.Id == PurchaseOrderDetailId
+                       select c;
+            return await rslt.FirstOrDefaultAsync();
+        }
+
+        [HttpPost("AddPurchaseOrderDetail")]
+
+        public async Task<ActionResult> AddPurchaseOrderDetail(PurchaseOrderDetail purchaseOrderDetail)
+        {
+            _ctx.PurchaseOrderDetail.Add(purchaseOrderDetail);
+            await _ctx.SaveChangesAsync();
+            return Ok();
+        }
+
+        [HttpDelete("/DeletePurchaseOrderDetail/{purchaseOrderDetailId}")]
+        public async Task<ActionResult> DeletePurchaseOrderDetail(int purchaseOrderDetailId)
+        {
+            var rslt = from c in _ctx.PurchaseOrderDetail
+                       where c.Id == purchaseOrderDetailId
+                       select c;
+            PurchaseOrderDetail? purchaseOrderDetail = await rslt.FirstOrDefaultAsync();
+            if(purchaseOrderDetail != null)
+            {
+                _ctx.PurchaseOrderDetail.Remove(purchaseOrderDetail);
+                await _ctx.SaveChangesAsync();
+            }
+            return Ok();
+        }
     }
 }
