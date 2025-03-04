@@ -23,8 +23,8 @@ namespace NXLibraryBackend.Data
         }
 
         public DbSet<Vendor> Vendor { get; set; } = default!;
-        public DbSet<PONumber> PONumber { get; set; } = default!;
-        public DbSet<PODetail> PODetail { get; set; } = default!;
+        public DbSet<PurchaseOrder> PurchaseOrder { get; set; } = default!;
+        public DbSet<PurchaseOrderDetail> PurchaseOrderDetail { get; set; } = default!;
         public DbSet<Book> Books { get; set; } = default!;
         public DbSet<BookAuthor> BookAuthor { get; set; } = default!;
         public DbSet<ItemReceipt> ItemReceipt { get; set; } = default!;

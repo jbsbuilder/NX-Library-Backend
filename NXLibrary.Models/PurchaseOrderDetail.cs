@@ -5,18 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
-
 namespace Models
 {
-    public class ItemReceiptDetail
+    public class PurchaseOrderDetail
     {
         [Key]
         public int Id { get; set; }
-        public int ItemReceiptId { get; set; }
+        public int PurchaseOrderId { get; set; }
         public int BookId { get; set; }
         public int QTY { get; set; }
-        public double Price { get; set; }
-        public ItemReceipt ItemReceipt { get; set; } = default!;
+        public Double Price { get; set; }
+        public PurchaseOrder PurchaseOrder { get; set; } = default!;
         public Book Book { get; set; } = default!;
+
     }
 }

@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class PONumber
+    public class PurchaseOrder
     {
         public int Id { get; set; }
-        [ForeignKey(nameof(VendorId))]
-        public Vendor? Vendor { get; set; }
-        public int? VendorId { get; set; }
-        public int? PONumbers { get; set; }
+        public DateTime PODate { get; set; }
+        public int VendorId { get; set; }
+        public Vendor Vendor { get; set; } = default!;
     }
 }
